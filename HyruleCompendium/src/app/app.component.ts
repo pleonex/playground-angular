@@ -10,5 +10,4 @@ import { MenuComponent } from './home/menu.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'HyruleCompendium';
 }

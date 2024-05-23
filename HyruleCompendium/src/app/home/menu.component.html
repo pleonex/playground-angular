@@ -1,15 +1,18 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" routerLink="/">
       <img src="https://gadhagod.github.io/Hyrule-Compendium-API/assets/light_logo.png">
-      <h1>Hyrule compendium</h1>
+      <h1>{{title}}</h1>
     </a>
 
     <a role="button"
+       #burgerButton
        class="navbar-burger"
+       [class.is-active]="isBurgerMenuVisible"
        aria-label="menu"
        aria-expanded="false"
-       data-target="navbarHome">
+       data-target="navbarHome"
+       (click)="onBurgerClick()">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -17,12 +20,12 @@
     </a>
   </div>
 
-  <div id="navbarHome" class="navbar-menu">
+  <div id="navbarHome" class="navbar-menu" [class.is-active]="isBurgerMenuVisible">
 
     <div class="navbar-start">
-      <a class="navbar-item" routerLink="/home">Home</a>
+      <a class="navbar-item" routerLink="/">Home</a>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">Compendium</a>
+        <a class="navbar-link" routerLink="/compendium">Compendium</a>
 
         <div class="navbar-dropdown">
           <a class="navbar-item">Creatures</a>
@@ -37,7 +40,16 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-light">Log out</a>
+          @if (loggedUser) {
+            <p>{{loggedUser.fullName}}</p>
+            <a class="button is-light" (click)="onLogoutClick()">
+              Log out
+            </a>
+          } @else {
+            <a class="button is-primary" routerLink="/login">
+              Log in
+            </a>
+          }
         </div>
       </div>
     </div>

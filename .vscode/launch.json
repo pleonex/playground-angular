@@ -8,6 +8,12 @@
       "request": "launch",
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200/",
+      "pathMappings": [
+        {
+          "url": "http://localhost:4200/",
+          "path": "${workspaceFolder}/HyruleCompendium/"
+        }
+      ]
     },
     {
       "name": "ng test",
