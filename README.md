@@ -1,2 +1,3 @@
-# playground-angular
+# Angular playground
+
 Example applications to learn Angular
