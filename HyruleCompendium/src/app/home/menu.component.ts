@@ -1,0 +1,12 @@
+import { Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
+
+@Component({
+  selector: "hyrule-menu",
+  templateUrl: "./menu.component.html",
+  standalone: true,
+  imports: [RouterLink],
+})
+export class MenuComponent {
+
+}

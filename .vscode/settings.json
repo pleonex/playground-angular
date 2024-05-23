@@ -1,0 +1,10 @@
+{
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.renderWhitespace": "boundary",
+    "cSpell.words": [
+        "hyrule"
+    ]
+}
