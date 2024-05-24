@@ -1,0 +1,74 @@
+<nav class="panel is-info">
+  @if (creature) {
+    <p class="panel-heading">Details: {{creature.id}} - {{creature.name | titlecase}}</p>
+    <div class="panel-block">
+      <span class="panel-icon">
+        <i class="fas fa-book" title="Description" aria-hidden="true"></i>
+      </span>
+      <div class="columns">
+        <div class="column is-four-fifths content">
+          <p class="is-text-justified">{{creature.description}}</p>
+        </div>
+        <figure class="image is-96x96" style="margin-top: 8px;">
+          <img [src]="creature.image" alt="creature photo">
+        </figure>
+      </div>
+    </div>
+    <label class="panel-block">
+      <input type="checkbox" [checked]="creature.dlc" disabled />
+      DLC content.
+    </label>
+    <label class="panel-block">
+      <input type="checkbox" [checked]="creature.edible" disabled />
+      Edible.
+    </label>
+    <div class="panel-block">
+      <span class="panel-icon">
+        <i class="fas fa-location-dot" title="Locations" aria-hidden="true"></i>
+      </span>
+      <span style="margin-left: 12px;">
+        <dl>
+          @for (loc of creature.common_locations; track $index) {
+            <li>{{loc}}.</li>
+          } @empty {
+            No known locations.
+          }
+        </dl>
+      </span>
+    </div>
+    @if (creature.edible) {
+      <div class="panel-block">
+        <span class="panel-icon">
+          <i class="fas fa-kitchen-set" title="Cooking effect" aria-hidden="true"></i>
+        </span>
+        {{(creature.cooking_effect) ? creature.cooking_effect : "No cooking effect"}}
+      </div>
+      <div class="panel-block">
+        <span class="panel-icon">
+          <i class="fas fa-heart-circle-plus" title="Hearts recovered" aria-hidden="true"></i>
+        </span>
+        Recover {{creature.hearts_recovered ?? 0}} heart(s).
+      </div>
+    } @else {
+      <div class="panel-block">
+        <span class="panel-icon">
+          <i class="fas fa-cubes-stacked" title="Drops" aria-hidden="true"></i>
+        </span>
+        <span style="margin-left: 12px;">
+          <dl>
+            @for (drop of creature.drops; track $index) {
+              <li>{{drop}}.</li>
+            } @empty {
+              Drops nothing.
+            }
+          </dl>
+        </span>
+      </div>
+    }
+  } @else {
+    <p class="panel-heading">Details</p>
+    <div class="panel-block">
+      <p>Please select a creature to see more information.</p>
+    </div>
+  }
+</nav>

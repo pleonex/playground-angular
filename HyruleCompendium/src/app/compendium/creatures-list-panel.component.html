@@ -1,0 +1,34 @@
+<nav class="panel is-info">
+  <p class="panel-heading">Creatures</p>
+  <div class="panel-block">
+    <p class="control has-icons-left">
+      <input class="input" type="text" placeholder="Search" [(ngModel)]="searchName">
+      <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+    </p>
+  </div>
+
+  <div style="max-height: 500px; overflow: auto;">
+    @for (creature of filteredCreatures; track creature.id) {
+      <a class="panel-block"
+         [routerLink]="['./']"
+         [queryParams]="{id: creature.id}"
+         [class.is-active]="creature.id == selectedId"
+         (click)="onSelectedChange(creature)">
+        <span class="panel-icon">
+          <figure class="image">
+            <img [src]="creature.image" alt="logo">
+          </figure>
+        </span>
+        [{{creature.id}}] {{creature.name | titlecase}}
+      </a>
+    } @empty {
+      @if (creatures.length == 0) { <!-- only if we don't have any creature yet -->
+        <div class="panel-block">
+          <progress class="progress is-small is-dark" max="100"></progress>
+        </div>
+      }
+    }
+  </div>
+</nav>

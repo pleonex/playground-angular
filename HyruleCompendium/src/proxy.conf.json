@@ -10,5 +10,11 @@
     "pathRewrite": { "^/api/techy": "/api/text" },
     "secure": false,
     "changeOrigin": true
+  },
+  "/api/compendium/category": {
+    "target": "https://botw-compendium.herokuapp.com",
+    "pathRewrite": { "^/api/compendium/category": "/api/v3/compendium/category" },
+    "secure": false,
+    "changeOrigin": true
   }
 }
