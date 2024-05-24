@@ -11,6 +11,15 @@ export class AuthService {
   currentUser: IUser | null = null;
   currentUser$ = this._currentUserSubject.asObservable();
 
+  constructor()
+  {
+    const userJson = window.localStorage.getItem("user");
+    if (userJson) {
+      this.currentUser = JSON.parse(userJson);
+      this._currentUserSubject.next(this.currentUser);
+    }
+  }
+
   isLoggedIn(): boolean {
     return !!this.currentUser;
   }
@@ -23,6 +32,7 @@ export class AuthService {
         fullName: "Hero of Time",
         roles: ["admin"],
       };
+      window.localStorage.setItem("user", JSON.stringify(this.currentUser));
 
       this._currentUserSubject.next(this.currentUser);
       return true;
@@ -33,6 +43,7 @@ export class AuthService {
 
   logout(): void {
     this.currentUser = null;
+    window.localStorage.removeItem("user");
     this._currentUserSubject.next(null);
   }
 }
