@@ -1,8 +1,8 @@
 <nav class="panel is-info">
-  @if (xkcd && xkcdDate) {
-    <p class="panel-heading">{{xkcd.title}} ({{xkcdDate.toLocaleDateString()}})</p>
-    <div class="panel-block">
-      <figure>
+  <p class="panel-heading">{{xkcd?.title}} ({{xkcdDate?.toLocaleDateString()}})</p>
+  <div class="panel-block">
+    <figure>
+        @if (xkcd && xkcdDate) {
         <img src="{{xkcd.img}}" alt="{{xkcd.transcript}}" title="{{xkcd.title}}">
         <figcaption>
           <article class="message">
@@ -11,7 +11,9 @@
             </div>
           </article>
         </figcaption>
+      } @else {
+        <img src="https://http.cat/102" alt="loading">
+      }
       </figure>
     </div>
-  }
 </nav>

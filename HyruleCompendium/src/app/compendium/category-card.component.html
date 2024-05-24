@@ -1,0 +1,19 @@
+<div class="box" style="max-width: 500px;" (click)="onBoxClick()">
+  <article class="media">
+    <figure class="media-left">
+      <p class="image">
+        <img [src]="category.image" alt="{{category.name}} logo" />
+      </p>
+    </figure>
+
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{category.name}}</strong>
+          <br>
+          {{category.description}}
+        </p>
+      </div>
+    </div>
+  </article>
+</div>

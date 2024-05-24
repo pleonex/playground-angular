@@ -1,10 +1,39 @@
 import { Component } from "@angular/core";
+import { CategoryCardComponent } from "./category-card.component";
+import { ICategory } from "./category";
 
 @Component({
   selector: "hyrule-compendium",
   templateUrl: "./compendium.component.html",
   standalone: true,
+  imports: [CategoryCardComponent]
 })
 export class CompendiumComponent {
-
+  categories: ICategory[] = [
+    {
+      name: "Creatures",
+      description: "Animals: bird, fish, insect, horse.",
+      image: "categories/creatures.png"
+    },
+    {
+      name: "Equipment",
+      description: "Battle-tested weapon, such as a sword, spear, or bow.",
+      image: "categories/equipment.png"
+    },
+    {
+      name: "Materials",
+      description: "Cooking ingredient, such as an apple or a mushroom",
+      image: "categories/materials.png"
+    },
+    {
+      name: "Monsters",
+      description: "Monsters that can be found in Hyrule.",
+      image: "categories/monsters.png"
+    },
+    {
+      name: "Treasures",
+      description: "Exciting subject, such as a treasure chest or ore.",
+      image: "categories/treasures.png",
+    },
+  ];
 }
