@@ -41,7 +41,7 @@
       <div class="navbar-item">
         <div class="buttons">
           @if (loggedUser) {
-            <p>{{loggedUser.fullName}}</p>
+            <p>{{loggedUser.fullName + " (@" + loggedUser.userName + ")"}}</p>
             <a class="button is-light" (click)="onLogoutClick()">
               Log out
             </a>

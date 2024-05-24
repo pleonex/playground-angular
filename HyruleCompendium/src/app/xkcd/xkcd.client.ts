@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { IXkcdComic } from "./XkcdComic";
+import { IXkcdComic } from "./xkcd-comic";
 import { Observable, catchError, of, tap } from "rxjs";
 import { BaseClient } from "../base.client";
 

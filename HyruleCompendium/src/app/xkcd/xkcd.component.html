@@ -1,8 +1,14 @@
 <nav class="panel is-info">
-  <p class="panel-heading">{{xkcd?.title}} ({{xkcdDate?.toLocaleDateString()}})</p>
+  <p class="panel-heading">{{xkcd?.title}} (#{{xkcd?.num}})</p>
+  <div class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-calendar-days" aria-hidden="true"></i>
+    </span>
+    {{xkcdDate?.toLocaleDateString()}}
+  </div>
   <div class="panel-block">
     <figure>
-        @if (xkcd && xkcdDate) {
+        @if (xkcd) {
         <img src="{{xkcd.img}}" alt="{{xkcd.transcript}}" title="{{xkcd.title}}">
         <figcaption>
           <article class="message">
@@ -14,6 +20,6 @@
       } @else {
         <img src="https://http.cat/102" alt="loading">
       }
-      </figure>
-    </div>
+    </figure>
+  </div>
 </nav>
