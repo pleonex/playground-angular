@@ -1,0 +1,17 @@
+<nav class="panel">
+  @if (xkcd && xkcdDate) {
+    <p class="panel-heading">{{xkcd.title}} ({{xkcdDate.toLocaleDateString()}})</p>
+    <div class="panel-block">
+      <figure>
+        <img src="{{xkcd.img}}" alt="{{xkcd.transcript}}" title="{{xkcd.title}}">
+        <figcaption>
+          <article class="message">
+            <div class="message-body">
+              {{xkcd.alt}}
+            </div>
+          </article>
+        </figcaption>
+      </figure>
+    </div>
+  }
+</nav>

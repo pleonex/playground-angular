@@ -1,0 +1,8 @@
+{
+  "/api/xkcd": {
+    "target": "https://xkcd.com",
+    "pathRewrite": { "^/api/xkcd": "/info.0.json" },
+    "secure": false,
+    "changeOrigin": true
+  }
+}
