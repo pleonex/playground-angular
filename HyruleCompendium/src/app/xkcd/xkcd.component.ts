@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { XkcdClient } from "./XkcdClient";
+import { XkcdClient } from "./xkcd.client";
 import { IXkcdComic } from "./XkcdComic";
 import { Subscription } from "rxjs";
 

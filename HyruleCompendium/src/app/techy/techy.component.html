@@ -1,0 +1,14 @@
+<nav class="panel is-info">
+  <p class="panel-heading">Techy tips</p>
+  <div class="panel-block">
+    <article class="message">
+      <div class="message-body">
+        @if (techyMessage) {
+          {{techyMessage}}
+        } @else {
+          <progress class="progress is-small is-dark" max="100"></progress>
+        }
+      </div>
+    </article>
+  </div>
+</nav>
