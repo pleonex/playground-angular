@@ -14,41 +14,45 @@ import { RouterLink } from "@angular/router";
   imports: [TitleCasePipe, FormsModule, RouterLink]
 })
 export class CreaturesListPanelComponent implements OnInit, OnDestroy {
-  private _subFetch?: Subscription;
-  private _searchName = "";
+  private _subSearch?: Subscription;
+  private _searchFilter = "";
 
   @Input() selectedId?: number;
   @Output() selectionChanged = new EventEmitter<number>();
-  creatures: ICreature[] = [];
+  loading = true;
   filteredCreatures: ICreature[] = [];
 
   constructor(private _client: CompendiumClient) {
   }
 
-  get searchName(): string {
-    return this._searchName;
+  get searchFilter(): string {
+    return this._searchFilter;
   }
-  set searchName(value: string) {
-    this._searchName = value;
+  set searchFilter(value: string) {
+    this._searchFilter = value;
     this.performFilter();
   }
 
   ngOnInit(): void {
-    this._subFetch = this._client.fetchCreatures().subscribe(d => {
-      this.creatures = d.data;
-      this.performFilter();
-    });
+    this.performFilter();
   }
 
   ngOnDestroy(): void {
-    this._subFetch?.unsubscribe();
+    this._subSearch?.unsubscribe();
   }
 
   performFilter(): void {
-    this.filteredCreatures = this.creatures.filter(c =>
-      c.name.includes(this.searchName) || (c.id == Number.parseInt(this.searchName))
-    )
-    .sort((a, b) => a.id - b.id);
+    if (this._subSearch) {
+      this._subSearch?.unsubscribe();
+    }
+
+    this.loading = true;
+    this.filteredCreatures = [];
+    this._subSearch = this._client.filterCreatures(this.searchFilter, false)
+      .subscribe(r => {
+        this.loading = false;
+        this.filteredCreatures = r;
+      });
   }
 
   onSelectedChange(value: ICreature): void {

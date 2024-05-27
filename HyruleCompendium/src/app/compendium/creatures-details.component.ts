@@ -32,7 +32,7 @@ export class CreaturesDetailsComponent {
 
   ngOnInit(): void {
     this._subFetch = this._client.fetchCreatures().subscribe(d => {
-      this._creatures = d.data;
+      this._creatures = d;
       if (this.selectedId) {
         this.creature = this._creatures.find(c => c.id == this.selectedId);
       }

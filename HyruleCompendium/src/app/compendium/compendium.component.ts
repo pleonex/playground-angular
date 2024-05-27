@@ -1,12 +1,13 @@
 import { Component } from "@angular/core";
 import { CategoryCardComponent } from "./category-card.component";
 import { ICategory } from "./category";
+import { CategorySearchComponent } from "./category-search.component";
 
 @Component({
   selector: "hyrule-compendium",
   templateUrl: "./compendium.component.html",
   standalone: true,
-  imports: [CategoryCardComponent]
+  imports: [CategoryCardComponent, CategorySearchComponent]
 })
 export class CompendiumComponent {
   categories: ICategory[] = [

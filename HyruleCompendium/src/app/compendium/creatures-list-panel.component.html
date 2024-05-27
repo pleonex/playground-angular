@@ -2,7 +2,7 @@
   <p class="panel-heading">Creatures</p>
   <div class="panel-block">
     <p class="control has-icons-left">
-      <input class="input" type="text" placeholder="Search" [(ngModel)]="searchName">
+      <input class="input" type="text" placeholder="Search" [(ngModel)]="searchFilter">
       <span class="icon is-left">
         <i class="fas fa-search" aria-hidden="true"></i>
       </span>
@@ -24,7 +24,7 @@
         [{{creature.id}}] {{creature.name | titlecase}}
       </a>
     } @empty {
-      @if (creatures.length == 0) { <!-- only if we don't have any creature yet -->
+      @if (loading) {
         <div class="panel-block">
           <progress class="progress is-small is-dark" max="100"></progress>
         </div>
