@@ -1,12 +1,11 @@
 <section class="section">
   <div class="columns">
     <div class="column is-one-third">
-      <hyrule-creatures-list-panel [selectedId]="selectedId"
-                                   (selectionChanged)="onSelectionChanged($event)">
+      <hyrule-creatures-list-panel [(selectedId)]="selectedId">
       </hyrule-creatures-list-panel>
     </div>
     <div class="column">
-      <hyrule-creatures-details [selectedId]="selectedId"></hyrule-creatures-details>
+      <hyrule-creatures-details [selectedId]="selectedId()"></hyrule-creatures-details>
     </div>
   </div>
 </section>

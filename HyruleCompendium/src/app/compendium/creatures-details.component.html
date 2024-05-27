@@ -1,5 +1,5 @@
 <nav class="panel is-info">
-  @if (creature) {
+  @if (creature(); as creature) {
     <p class="panel-heading">Details: {{creature.id}} - {{creature.name | titlecase}}</p>
     <div class="panel-block">
       <span class="panel-icon">

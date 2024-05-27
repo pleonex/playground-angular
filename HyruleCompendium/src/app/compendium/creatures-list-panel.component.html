@@ -14,7 +14,7 @@
       <a class="panel-block"
          [routerLink]="['./']"
          [queryParams]="{id: creature.id}"
-         [class.is-active]="creature.id == selectedId"
+         [class.is-active]="creature.id == selectedId()"
          (click)="onSelectedChange(creature)">
         <span class="panel-icon">
           <figure class="image">

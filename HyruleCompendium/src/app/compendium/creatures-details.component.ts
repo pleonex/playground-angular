@@ -1,6 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, WritableSignal, computed, input, signal } from "@angular/core";
 import { ICreature } from "./creature";
-import { Subscription } from "rxjs";
 import { CompendiumClient } from "./compendium.client";
 import { TitleCasePipe } from "@angular/common";
 
@@ -11,36 +10,15 @@ import { TitleCasePipe } from "@angular/common";
   imports: [TitleCasePipe]
 })
 export class CreaturesDetailsComponent {
-  private _subFetch?: Subscription;
-  private _selectedId: number | undefined;
-  private _creatures: ICreature[] = [];
+  selectedId = input.required<number>();
 
-  creature?: ICreature;
-
-  get selectedId(): number | undefined {
-    return this._selectedId;
-  }
-  @Input() set selectedId(id: number | undefined) {
-    this._selectedId = id;
-    if (this._creatures) {
-      this.creature = this._creatures.find(c => c.id == this.selectedId);
-    }
-  }
+  creatures: WritableSignal<ICreature[]> = signal([]);
+  creature = computed(() => this.creatures().find(c => c.id == this.selectedId()));
 
   constructor(private _client: CompendiumClient) {
   }
 
   ngOnInit(): void {
-    this._subFetch = this._client.fetchCreatures().subscribe(d => {
-      this._creatures = d;
-      if (this.selectedId) {
-        this.creature = this._creatures.find(c => c.id == this.selectedId);
-      }
-    });
+    this._client.fetchCreatures().subscribe(d => this.creatures.set(d));
   }
-
-  ngOnDestroy(): void {
-    this._subFetch?.unsubscribe();
-  }
-
 }

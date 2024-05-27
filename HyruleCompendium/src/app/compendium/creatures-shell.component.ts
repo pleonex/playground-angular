@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, WritableSignal, signal } from "@angular/core";
 import { CreaturesListPanelComponent } from "./creatures-list-panel.component";
 import { CreaturesDetailsComponent } from "./creatures-details.component";
 import { ActivatedRoute } from "@angular/router";
@@ -9,18 +9,12 @@ import { ActivatedRoute } from "@angular/router";
   standalone: true,
   imports: [CreaturesListPanelComponent, CreaturesDetailsComponent]
 })
-export class CreaturesShellComponent implements OnInit {
-  selectedId?: number;
+export class CreaturesShellComponent {
+  selectedId: WritableSignal<number> = signal(-1);
 
-  constructor(private route: ActivatedRoute)
+  constructor(route: ActivatedRoute)
   {
-  }
-
-  ngOnInit(): void {
-    this.selectedId = Number(this.route.snapshot.queryParamMap.get("id")) ?? null;
-  }
-
-  onSelectionChanged(id: number): void {
-    this.selectedId = id;
+    const optionalId = Number(route.snapshot.queryParamMap.get("id"));
+    this.selectedId = signal(optionalId ?? -1);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import { Component, OnDestroy, OnInit, model } from "@angular/core";
 import { ICreature } from "./creature";
 import { CompendiumClient } from "./compendium.client";
 import { Subscription } from "rxjs";
@@ -17,8 +17,7 @@ export class CreaturesListPanelComponent implements OnInit, OnDestroy {
   private _subSearch?: Subscription;
   private _searchFilter = "";
 
-  @Input() selectedId?: number;
-  @Output() selectionChanged = new EventEmitter<number>();
+  selectedId = model(0);
   loading = true;
   filteredCreatures: ICreature[] = [];
 
@@ -56,7 +55,6 @@ export class CreaturesListPanelComponent implements OnInit, OnDestroy {
   }
 
   onSelectedChange(value: ICreature): void {
-    this.selectedId = value.id;
-    this.selectionChanged.emit(value.id);
+    this.selectedId.set(value.id);
   }
 }
