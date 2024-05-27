@@ -16,22 +16,51 @@
         Please type the filter.
       </a>
     } @else {
-      <p class="panel-block has-background-primary-light has-text-primary-light-invert">
-        <strong>Creatures</strong>
-      </p>
-      @for (result of creatureResults; track result.id) {
-        <a class="panel-block"
-          [routerLink]="[result.category]"
-          [queryParams]="{'id': result.id}">
-          <span class="panel-icon">
-            <i class="fas fa-horse" aria-hidden="true"></i>
-          </span>
-          {{result.id}} - {{result.name}}
-        </a>
-      } @empty {
-        <a class="panel-block">
-          No results
-        </a>
+      @for (category of results | keyvalue; track category.key) {
+        <p class="panel-block has-background-primary-light has-text-primary-light-invert">
+          <strong>{{category.key | titlecase}}</strong>
+        </p>
+
+        @for (entry of category.value; track entry.id) {
+          <a class="panel-block"
+            [routerLink]="[entry.category]"
+            [queryParams]="{'id': entry.id}">
+
+            @switch (category.key) {
+              @case ("creatures") {
+                <span class="panel-icon">
+                  <i class="fas fa-horse" aria-hidden="true"></i>
+                </span>
+              }
+              @case ("equipment") {
+                <span class="panel-icon">
+                  <i class="fas fa-wand-sparkles" aria-hidden="true"></i>
+                </span>
+              }
+              @case ("materials") {
+                <span class="panel-icon">
+                  <i class="fas fa-apple-whole" aria-hidden="true"></i>
+                </span>
+              }
+              @case ("monsters") {
+                <span class="panel-icon">
+                  <i class="fas fa-skull" aria-hidden="true"></i>
+                </span>
+              }
+              @case ("treasure") {
+                <span class="panel-icon">
+                  <i class="fas fa-toolbox" aria-hidden="true"></i>
+                </span>
+              }
+            }
+
+            {{entry.id}} - {{entry.name | titlecase}}
+          </a>
+        } @empty {
+          <a class="panel-block">
+            No results
+          </a>
+        }
       }
     }
   </div>

@@ -4,19 +4,20 @@ import { Subscription } from "rxjs";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
 import { ICompendiumEntry } from "./compendium-entry";
+import { KeyValuePipe, TitleCasePipe } from "@angular/common";
 
 @Component({
   selector: "hyrule-category-search",
   templateUrl: "./category-search.component.html",
   standalone: true,
-  imports: [FormsModule, RouterLink]
+  imports: [FormsModule, RouterLink, KeyValuePipe, TitleCasePipe]
 })
 export class CategorySearchComponent implements OnDestroy {
   private _subCreatures? : Subscription;
   private _subSearch?: Subscription;
   private _searchFilter = "";
 
-  creatureResults: ICompendiumEntry[] = [];
+  results: {[category: string]: ICompendiumEntry[]} = {};
 
   constructor(private _client: CompendiumClient)
   {
@@ -41,8 +42,8 @@ export class CategorySearchComponent implements OnDestroy {
       this._subSearch?.unsubscribe();
     }
 
-    this.creatureResults = [];
-    this._subSearch = this._client.fetchAndFilter<ICompendiumEntry>("creatures", this.searchFilter, true)
-      .subscribe(r => this.creatureResults = r);
+    this.results = {};
+    this._subSearch = this._client.fetchAllAndFilter(this.searchFilter, true)
+      .subscribe(r => this.results = r);
   }
 }

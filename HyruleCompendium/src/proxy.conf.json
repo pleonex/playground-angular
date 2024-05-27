@@ -11,9 +11,9 @@
     "secure": false,
     "changeOrigin": true
   },
-  "/api/compendium/category": {
+  "/api/compendium": {
     "target": "https://botw-compendium.herokuapp.com",
-    "pathRewrite": { "^/api/compendium/category": "/api/v3/compendium/category" },
+    "pathRewrite": { "^/api/compendium": "/api/v3/compendium" },
     "secure": false,
     "changeOrigin": true
   }
