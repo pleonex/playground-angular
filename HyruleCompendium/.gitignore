@@ -43,3 +43,6 @@ Thumbs.db
 
 # Adding Font Awesome to git would be to "commit" a crime!
 public/fa
+
+.nx/cache
+.nx/workspace-data
