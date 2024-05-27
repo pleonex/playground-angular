@@ -1,0 +1,55 @@
+name: "[HyruleCompendium] Build"
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ main ]
+    tags: [ "v*" ]
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Setup Node.JS"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # TODO: versioning
+
+      - name: "Restore dependencies"
+        run: "npm ci"
+        working-directory: "HyruleCompendium"
+
+      - name: "Build"
+        run: "npm run build -- --configuration production"
+        working-directory: "HyruleCompendium"
+
+      # TODO: run tests
+
+      - name: "Publish artifacts to CI"
+        uses: actions/upload-artifact@v4
+        with:
+          name: "Artifacts"
+          retention-days: 14
+          path: HyruleCompendium/dist/hyrule-compendium/
+
+  # TODO: deploy to GitHub Pages, CORS issues?
