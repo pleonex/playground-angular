@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { CompendiumClient } from "./compendium.client";
 import { Subscription } from "rxjs";
 import { FormsModule } from "@angular/forms";

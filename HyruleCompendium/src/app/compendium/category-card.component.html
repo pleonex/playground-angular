@@ -1,4 +1,9 @@
-<div class="box" style="max-width: 500px;" (click)="onBoxClick()">
+<div class="box"
+     style="max-width: 500px;"
+     role="button"
+     tabindex="0"
+     (click)="onBoxClick()"
+     (keyup.enter)="onBoxClick()">
   <article class="media">
     <figure class="media-left">
       <p class="image">

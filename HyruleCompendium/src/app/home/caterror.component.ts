@@ -7,7 +7,7 @@ import { ActivatedRoute } from "@angular/router";
   standalone: true,
 })
 export class CatErrorComponent implements OnInit {
-  errorCode: Number = 404;
+  errorCode: number = 404;
   errorUrl: string = "";
 
   constructor(private _route: ActivatedRoute)
@@ -15,7 +15,7 @@ export class CatErrorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.errorCode = Number(this._route.snapshot.paramMap.get("id")) ?? 404;
+    this.errorCode = Number(this._route.snapshot.paramMap.get("id") ?? 404);
     this.errorUrl = `https://http.cat/${this.errorCode}`;
   }
 }

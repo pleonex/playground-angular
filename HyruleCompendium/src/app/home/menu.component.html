@@ -1,7 +1,7 @@
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" routerLink="/">
-      <img src="logo.png">
+      <img src="logo.png" alt="App logo">
       <h1>{{title}}</h1>
     </a>
 
@@ -12,7 +12,9 @@
        aria-label="menu"
        aria-expanded="false"
        data-target="navbarHome"
-       (click)="onBurgerClick()">
+       tabindex="0"
+       (click)="onBurgerClick()"
+       (keyup)="onBurgerClick()">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -42,7 +44,7 @@
         <div class="buttons">
           @if (loggedUser) {
             <p>{{loggedUser.fullName + " (@" + loggedUser.userName + ")"}}</p>
-            <a class="button is-light" (click)="onLogoutClick()">
+            <a class="button is-light" (click)="onLogoutClick()" (keyup)="onLogoutClick()" tabindex="0">
               Log out
             </a>
           } @else {

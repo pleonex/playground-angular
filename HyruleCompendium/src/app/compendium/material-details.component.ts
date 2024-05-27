@@ -1,5 +1,5 @@
 import { TitleCasePipe } from "@angular/common";
-import { Component, WritableSignal, computed, input, signal } from "@angular/core";
+import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
 import { IMaterial } from "./material";
 import { CompendiumClient } from "./compendium.client";
 
@@ -9,7 +9,7 @@ import { CompendiumClient } from "./compendium.client";
   standalone: true,
   imports: [TitleCasePipe],
 })
-export class MaterialDetailsComponent {
+export class MaterialDetailsComponent implements OnInit {
   selectedId = input.required<number>();
 
   entries: WritableSignal<IMaterial[]> = signal([]);

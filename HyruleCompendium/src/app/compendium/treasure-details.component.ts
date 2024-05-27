@@ -1,5 +1,5 @@
 import { TitleCasePipe } from "@angular/common";
-import { Component, WritableSignal, computed, input, signal } from "@angular/core";
+import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
 import { CompendiumClient } from "./compendium.client";
 import { ITreasure } from "./treasure";
 
@@ -9,7 +9,7 @@ import { ITreasure } from "./treasure";
   standalone: true,
   imports: [TitleCasePipe],
 })
-export class TreasureDetailsComponent {
+export class TreasureDetailsComponent implements OnInit {
   selectedId = input.required<number>();
 
   entries: WritableSignal<ITreasure[]> = signal([]);

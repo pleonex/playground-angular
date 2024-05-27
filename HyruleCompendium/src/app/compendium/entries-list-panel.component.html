@@ -14,7 +14,7 @@
       <a class="panel-block"
          [routerLink]="['./']"
          [queryParams]="{id: entry.id}"
-         [class.is-active]="entry.id == selectedId()"
+         [class.is-active]="entry.id === selectedId()"
          (click)="onSelectedChange(entry)">
         <span class="panel-icon">
           <figure class="image">

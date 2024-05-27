@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { inject } from '@angular/core';
 
 // I really prefer the class-based approach to avoid the service locator anti-pattern.
-export const authDenyGuard: CanActivateFn = (route, state) => {
+export const authDenyGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const isLogged = authService.isLoggedIn();
   if (!isLogged) {
@@ -14,7 +14,7 @@ export const authDenyGuard: CanActivateFn = (route, state) => {
   return isLogged;
 };
 
-export const authRedirectLoginGuard: CanActivateFn = (route, state) => {
+export const authRedirectLoginGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const isLogged = authService.isLoggedIn();
   if (!isLogged) {

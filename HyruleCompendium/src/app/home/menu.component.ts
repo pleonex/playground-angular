@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router, RouterLink } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
-import { CommonModule, NgIf } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Subscription } from "rxjs";
 import { IUser } from "../auth/user";
 

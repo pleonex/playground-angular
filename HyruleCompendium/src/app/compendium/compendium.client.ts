@@ -36,7 +36,7 @@ export class CompendiumClient extends BaseClient {
             this._compendium[entry.category].push(entry);
           }
         }),
-        map(_d => this._compendium),
+        map(() => this._compendium),
         catchError(this.handleError),
       );
   }
@@ -50,7 +50,7 @@ export class CompendiumClient extends BaseClient {
     return this.fetchAll()
       .pipe(
         map(d => {
-          let result: {[category: string]: ICompendiumEntry[] } = {}
+          const result: {[category: string]: ICompendiumEntry[] } = {}
           for (const cat in d) {
             result[cat] = d[cat].filter(c => c.name.includes(filterText) || c.id == filterAsNumber);
           }

@@ -1,4 +1,4 @@
-import { Component, WritableSignal, computed, input, signal } from "@angular/core";
+import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
 import { ICreature } from "./creature";
 import { CompendiumClient } from "./compendium.client";
 import { TitleCasePipe } from "@angular/common";
@@ -9,7 +9,7 @@ import { TitleCasePipe } from "@angular/common";
   standalone: true,
   imports: [TitleCasePipe]
 })
-export class CreaturesDetailsComponent {
+export class CreaturesDetailsComponent implements OnInit{
   selectedId = input.required<number>();
 
   creatures: WritableSignal<ICreature[]> = signal([]);
