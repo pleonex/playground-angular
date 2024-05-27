@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CompendiumClient } from "./compendium.client";
-import { ICreature } from "./creature";
 import { Subscription } from "rxjs";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
+import { ICompendiumEntry } from "./compendium-entry";
 
 @Component({
   selector: "hyrule-category-search",
@@ -11,13 +11,12 @@ import { RouterLink } from "@angular/router";
   standalone: true,
   imports: [FormsModule, RouterLink]
 })
-export class CategorySearchComponent implements OnInit, OnDestroy {
+export class CategorySearchComponent implements OnDestroy {
   private _subCreatures? : Subscription;
   private _subSearch?: Subscription;
   private _searchFilter = "";
 
-  creatures: ICreature[] = [];
-  creatureResults: ISearchResult[] = [];
+  creatureResults: ICompendiumEntry[] = [];
 
   constructor(private _client: CompendiumClient)
   {
@@ -29,10 +28,6 @@ export class CategorySearchComponent implements OnInit, OnDestroy {
   set searchFilter(value: string) {
     this._searchFilter = value;
     this.search();
-  }
-
-  ngOnInit(): void {
-    this._client.fetchCreatures().subscribe(c => this.creatures = c);
   }
 
   ngOnDestroy(): void {
@@ -47,22 +42,7 @@ export class CategorySearchComponent implements OnInit, OnDestroy {
     }
 
     this.creatureResults = [];
-    this._subSearch = this._client.filterCreatures(this.searchFilter, true)
-      .subscribe(r =>
-        this.creatureResults = r.map<ISearchResult>(this.mapCreature2Result));
+    this._subSearch = this._client.fetchAndFilter<ICompendiumEntry>("creatures", this.searchFilter, true)
+      .subscribe(r => this.creatureResults = r);
   }
-
-  mapCreature2Result(value: ICreature): ISearchResult {
-    return {
-      id: value.id.toString(),
-      name: value.name,
-      category: "creatures",
-    }
-  }
-}
-
-interface ISearchResult {
-  id: string;
-  name: string;
-  category: string;
 }

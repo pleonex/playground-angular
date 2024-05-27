@@ -1,25 +1,26 @@
-import { Component, OnDestroy, OnInit, model } from "@angular/core";
-import { ICreature } from "./creature";
+import { Component, OnDestroy, OnInit, input, model } from "@angular/core";
 import { CompendiumClient } from "./compendium.client";
 import { Subscription } from "rxjs";
 import { TitleCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
+import { ICompendiumEntry } from "./compendium-entry";
 
 @Component({
-  selector: "hyrule-creatures-list-panel",
-  templateUrl: "./creatures-list-panel.component.html",
-  styleUrl: "./creatures-list-panel.component.css",
+  selector: "hyrule-entries-list-panel",
+  templateUrl: "./entries-list-panel.component.html",
+  styleUrl: "./entries-list-panel.component.css",
   standalone: true,
   imports: [TitleCasePipe, FormsModule, RouterLink]
 })
-export class CreaturesListPanelComponent implements OnInit, OnDestroy {
+export class EntriesListPanelComponent implements OnInit, OnDestroy {
   private _subSearch?: Subscription;
   private _searchFilter = "";
 
+  categoryName = input.required<string>();
   selectedId = model(0);
   loading = true;
-  filteredCreatures: ICreature[] = [];
+  filtered: ICompendiumEntry[] = [];
 
   constructor(private _client: CompendiumClient) {
   }
@@ -46,15 +47,15 @@ export class CreaturesListPanelComponent implements OnInit, OnDestroy {
     }
 
     this.loading = true;
-    this.filteredCreatures = [];
-    this._subSearch = this._client.filterCreatures(this.searchFilter, false)
+    this.filtered = [];
+    this._subSearch = this._client.fetchAndFilter<ICompendiumEntry>(this.categoryName(), this.searchFilter, false)
       .subscribe(r => {
         this.loading = false;
-        this.filteredCreatures = r;
+        this.filtered = r;
       });
   }
 
-  onSelectedChange(value: ICreature): void {
+  onSelectedChange(value: ICompendiumEntry): void {
     this.selectedId.set(value.id);
   }
 }

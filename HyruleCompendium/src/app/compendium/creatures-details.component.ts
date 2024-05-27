@@ -19,6 +19,6 @@ export class CreaturesDetailsComponent {
   }
 
   ngOnInit(): void {
-    this._client.fetchCreatures().subscribe(d => this.creatures.set(d));
+    this._client.fetch<ICreature>("creatures").subscribe(d => this.creatures.set(d));
   }
 }

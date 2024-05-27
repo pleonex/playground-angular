@@ -1,5 +1,5 @@
 <nav class="panel is-info">
-  <p class="panel-heading">Creatures</p>
+  <p class="panel-heading">{{categoryName() | titlecase}}</p>
   <div class="panel-block">
     <p class="control has-icons-left">
       <input class="input" type="text" placeholder="Search" [(ngModel)]="searchFilter">
@@ -10,18 +10,18 @@
   </div>
 
   <div style="max-height: 500px; overflow: auto;">
-    @for (creature of filteredCreatures; track creature.id) {
+    @for (entry of filtered; track entry.id) {
       <a class="panel-block"
          [routerLink]="['./']"
-         [queryParams]="{id: creature.id}"
-         [class.is-active]="creature.id == selectedId()"
-         (click)="onSelectedChange(creature)">
+         [queryParams]="{id: entry.id}"
+         [class.is-active]="entry.id == selectedId()"
+         (click)="onSelectedChange(entry)">
         <span class="panel-icon">
           <figure class="image">
-            <img [src]="creature.image" alt="logo">
+            <img [src]="entry.image" alt="logo">
           </figure>
         </span>
-        [{{creature.id}}] {{creature.name | titlecase}}
+        [{{entry.id}}] {{entry.name | titlecase}}
       </a>
     } @empty {
       @if (loading) {

@@ -1,0 +1,18 @@
+<section class="section">
+  <div class="columns">
+    <div class="column is-one-third">
+      <hyrule-entries-list-panel [(selectedId)]="selectedId" [categoryName]="categoryName">
+      </hyrule-entries-list-panel>
+    </div>
+    <div class="column">
+      @switch (categoryName) {
+        @case ("creatures"){
+          <hyrule-creatures-details [selectedId]="selectedId()"></hyrule-creatures-details>
+        }
+        @default {
+          <p>The entry '{{categoryName}}' is not supported. Please contact support.</p>
+        }
+      }
+    </div>
+  </div>
+</section>
