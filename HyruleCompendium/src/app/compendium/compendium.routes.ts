@@ -8,5 +8,5 @@ export const COMPENDIUM_ROUTES: Routes = [
   { path: "equipment", component: EntriesShellComponent },
   { path: "materials", component: EntriesShellComponent },
   { path: "monsters", component: EntriesShellComponent },
-  { path: "treasures", component: EntriesShellComponent },
+  { path: "treasure", component: EntriesShellComponent },
 ];

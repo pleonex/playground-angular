@@ -32,7 +32,7 @@ export class CompendiumComponent {
       image: "categories/monsters.png"
     },
     {
-      name: "Treasures",
+      name: "Treasure",
       description: "Exciting subject, such as a treasure chest or ore.",
       image: "categories/treasures.png",
     },
