@@ -1,6 +1,11 @@
 <nav class="panel is-info">
   @if (entry(); as entry) {
-    <p class="panel-heading">Details: {{entry.id}} - {{entry.name | titlecase}}</p>
+    <p class="panel-heading">
+      Details: {{entry.id}} - {{entry.name | titlecase}}
+      @if (entry.dlc) {
+        <span class="tag is-link" style="margin-left: 20px;">DLC exclusive</span>
+      }
+    </p>
     <div class="panel-block">
       <span class="panel-icon">
         <i class="fas fa-book" title="Description" aria-hidden="true"></i>
@@ -14,10 +19,6 @@
         </figure>
       </div>
     </div>
-    <label class="panel-block">
-      <input type="checkbox" [checked]="entry.dlc" disabled />
-      DLC content.
-    </label>
 
     <p class="panel-block">
       <span class="panel-icon">

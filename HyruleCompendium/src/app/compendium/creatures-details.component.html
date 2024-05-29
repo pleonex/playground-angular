@@ -1,6 +1,14 @@
 <nav class="panel is-info">
   @if (creature(); as creature) {
-    <p class="panel-heading">Details: {{creature.id}} - {{creature.name | titlecase}}</p>
+    <p class="panel-heading">
+      Details: {{creature.id}} - {{creature.name | titlecase}}
+      @if (creature.edible) {
+        <span class="tag is-primary" style="margin-left: 20px;">Edible</span>
+      }
+      @if (creature.dlc) {
+        <span class="tag is-link" style="margin-left: 20px;">DLC exclusive</span>
+      }
+    </p>
     <div class="panel-block">
       <span class="panel-icon">
         <i class="fas fa-book" title="Description" aria-hidden="true"></i>
@@ -14,14 +22,6 @@
         </figure>
       </div>
     </div>
-    <label class="panel-block">
-      <input type="checkbox" [checked]="creature.dlc" disabled />
-      DLC content.
-    </label>
-    <label class="panel-block">
-      <input type="checkbox" [checked]="creature.edible" disabled />
-      Edible.
-    </label>
     <div class="panel-block">
       <span class="panel-icon">
         <i class="fas fa-location-dot" title="Locations" aria-hidden="true"></i>
