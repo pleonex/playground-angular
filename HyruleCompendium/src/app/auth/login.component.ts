@@ -1,17 +1,14 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { Subscription } from "rxjs";
 
 @Component({
   templateUrl: "./login.component.html",
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  private _sub?: Subscription;
-
+export class LoginComponent implements OnInit {
   redirectUrl: string = "";
   loginForm = new FormGroup({
     userName: new FormControl("link"),
@@ -25,22 +22,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._sub = this._route.queryParams.subscribe(v => {
-      this.redirectUrl = v["redirectUrl"] ?? "/";
+    this.redirectUrl = this._route.snapshot.queryParamMap.get("redirectUrl") ?? "/";
 
-      // attempt to prevent re-directions to other sites
-      if (this.redirectUrl.startsWith("http")) {
-        this._router.navigate(["/error/418"]);
-      }
+    // attempt to prevent re-directions to other sites
+    if (this.redirectUrl.startsWith("http")) {
+      this._router.navigate(["/error/418"]);
+    }
 
-      if (this._authService.isLoggedIn()) {
-        this._router.navigate([this.redirectUrl]);
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    this._sub?.unsubscribe();
+    if (this._authService.isLoggedIn()) {
+      this._router.navigate([this.redirectUrl]);
+    }
   }
 
   login(): void {

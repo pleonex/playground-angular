@@ -14,12 +14,14 @@ export const authDenyGuard: CanActivateFn = () => {
   return isLogged;
 };
 
-export const authRedirectLoginGuard: CanActivateFn = () => {
+export const authRedirectLoginGuard: CanActivateFn = (route) => {
   const authService = inject(AuthService);
   const isLogged = authService.isLoggedIn();
   if (!isLogged) {
     const router = inject(Router);
-    router.navigate(["/login"]);
+    router.navigate(
+      ["/login"],
+      { queryParams: { redirectUrl: route.url } });
   }
 
   return isLogged;

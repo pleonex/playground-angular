@@ -6,6 +6,7 @@ import { authDenyGuard, authRedirectLoginGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [authRedirectLoginGuard] },
+  { path: "home", component: HomeComponent, canActivate: [authRedirectLoginGuard] },
   { path: "login", component: LoginComponent },
   {
     path: "compendium",
