@@ -21,6 +21,7 @@ Wild_.
 
 **Features used**:
 
+- (UC1) Login
 - Route guards
 - Browser local storage
 - Route redirection
@@ -75,24 +76,85 @@ The login component was implemented with the new Angular reactive forms.
 
 **Features used**:
 
-- Router outlet + Router link
-- Event binding
 - Http client
-- Webpack dev proxy (to avoid CORS issues)
+- Webpack dev proxy
 
 ![home](./screenshots/home-after-login.png)
+
+The home page is available at `/` and `/home` (to showcase login redirection).
+It has two children components displayed in a dynamic grid layout:
+
+- XKCD comic: display the [xkcd](https://xkcd.com/) comic of the day. It
+  includes its title, ID, date, image and its "hidden" alt text. It retrieves
+  the data via a JSON response in an HTTP GET.
+- Techy: display a random ["tech-like"](https://techy-api.vercel.app/) tip. It
+  retrieves the data from an HTTP GET.
+
+To prevent CORS issues, the application in debug mode runs a dev proxy that
+redirects the local calls to `/api/xkcd` and `/api/techy` to the external hosts.
+The configuration is in [`proxy.conf.json](./src/proxy.conf.json).
 
 ## Compendium categories
 
 **Features used**:
 
+- (UC3) Search across different resources
+- Router navigation
+- NgModel two-ways binding
+- Template condition (`@if`, `@else`)
+- Template loops (`@for`, `@empty`)
+- Template switch (`@switch`)
+- Pipes (`titlecase`, `keyvalue`)
+- Router link with query params
+- State cache via service
+
 ![compendium categories](./screenshots/compendium-general-with-search.png)
+
+The compendium categories display boxes that are clickable and redirect to their
+entries.
+
+There is also a global search bar that allow to search by name or ID across all
+the resources of the compendium. Clicking in a result, redirects to the detailed
+entry view.
 
 ## Compendium entries
 
 **Features used**:
 
+- (UC2) List entries in a resource
+- (UC3) Detail view clicking on an entry
+- Input signals
+- Model signals (communication child -> parent)
+- Writable signal
+- Computed signal
+- Template condition (`@if`, `@else`)
+- Template loops (`@for`, `@empty`)
+- Template switch (`@switch`, `@default`)
+- Pipes (`titlecase`)
+
 ![compendium entries](./screenshots/compendium-creatures-with-details.png)
+
+For each category there is a view of its entries. The panel on the left displays
+all the items with name, ID and image. There is a search bar to filter by ID or
+partial name. The list is sorted by ID.
+
+When the user clicks on an entry from the panel list, the component from the
+right displays its detailed view.
+
+It also updates / navigate with a query param `?id=` so that the user can go
+directly into the detailed view of an entry.
+
+There are three components:
+
+- Main shell
+- Panel list
+- Detailed view
+
+The communication between components (for selected entry) happens via Angular
+signals. The panel list provides a model signal that it's binded two-ways to its
+parent shell. This signal is then binded (one way) into the detailed view. This
+view creates a computed signal updating the selected entry when the value of the
+input signal changes.
 
 ## Continuous integration
 
