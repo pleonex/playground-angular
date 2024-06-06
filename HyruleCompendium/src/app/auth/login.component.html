@@ -1,0 +1,46 @@
+<section class="section" style="max-width: 500px; margin: 0 auto;">
+  <form class="box" (ngSubmit)="login()" [formGroup]="loginForm">
+    <div class="field subtitle">
+      <p>Please log in to continue</p>
+    </div>
+    <div class="field">
+      <label class="label" for="userName">Username</label>
+      <div class="control has-icons-left">
+        <input class="input"
+               id="userName"
+               required
+               type="text"
+               placeholder="link"
+               formControlName="userName">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="password">Password</label>
+      <div class="control has-icons-left">
+        <input class="input"
+               required
+               id="password"
+               type="password"
+               placeholder="21/02/1986"
+               formControlName="password">
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-link"
+                [disabled]="!loginForm.valid"
+                type="submit">
+          Log in
+        </button>
+      </div>
+    </div>
+  </form>
+</section>

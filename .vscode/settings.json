@@ -1,0 +1,16 @@
+{
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.renderWhitespace": "boundary",
+    "cSpell.words": [
+        "hyrule",
+        "titlecase",
+        "Xkcd"
+    ],
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+}

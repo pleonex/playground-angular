@@ -1,0 +1,30 @@
+<section class="section">
+  <div class="columns">
+    <div class="column is-one-third">
+      <hyrule-entries-list-panel [(selectedId)]="selectedId" [categoryName]="categoryName">
+      </hyrule-entries-list-panel>
+    </div>
+    <div class="column">
+      @switch (categoryName) {
+        @case ("creatures"){
+          <hyrule-creatures-details [selectedId]="selectedId()"></hyrule-creatures-details>
+        }
+        @case ("equipment") {
+          <hyrule-equipment-details [selectedId]="selectedId()"></hyrule-equipment-details>
+        }
+        @case ("materials") {
+          <hyrule-material-details [selectedId]="selectedId()"></hyrule-material-details>
+        }
+        @case ("monsters") {
+          <hyrule-monster-details [selectedId]="selectedId()"></hyrule-monster-details>
+        }
+        @case ("treasure") {
+          <hyrule-treasure-details [selectedId]="selectedId()"></hyrule-treasure-details>
+        }
+        @default {
+          <p>The entry '{{categoryName}}' is not supported. Please contact support.</p>
+        }
+      }
+    </div>
+  </div>
+</section>

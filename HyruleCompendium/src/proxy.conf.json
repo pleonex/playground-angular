@@ -1,0 +1,20 @@
+{
+  "/api/xkcd": {
+    "target": "https://xkcd.com",
+    "pathRewrite": { "^/api/xkcd": "/info.0.json" },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api/techy": {
+    "target": "https://techy-api.vercel.app",
+    "pathRewrite": { "^/api/techy": "/api/text" },
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api/compendium": {
+    "target": "https://botw-compendium.herokuapp.com",
+    "pathRewrite": { "^/api/compendium": "/api/v3/compendium" },
+    "secure": false,
+    "changeOrigin": true
+  }
+}
