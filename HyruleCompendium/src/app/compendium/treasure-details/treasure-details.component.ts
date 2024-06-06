@@ -1,7 +1,7 @@
 import { TitleCasePipe } from "@angular/common";
 import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
-import { CompendiumClient } from "./compendium.client";
-import { ITreasure } from "./treasure";
+import { CompendiumClient } from "../compendium.client";
+import { ITreasure } from "../treasure";
 
 @Component({
   selector: "hyrule-treasure-details",

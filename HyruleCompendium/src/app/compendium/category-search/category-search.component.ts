@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from "@angular/core";
-import { CompendiumClient } from "./compendium.client";
+import { CompendiumClient } from "../compendium.client";
 import { Subscription } from "rxjs";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
-import { ICompendiumEntry } from "./compendium-entry";
+import { ICompendiumEntry } from "../compendium-entry";
 import { KeyValuePipe, TitleCasePipe } from "@angular/common";
 
 @Component({

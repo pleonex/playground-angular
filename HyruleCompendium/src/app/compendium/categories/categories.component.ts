@@ -1,15 +1,15 @@
 import { Component } from "@angular/core";
-import { CategoryCardComponent } from "./category-card.component";
-import { ICategory } from "./category";
-import { CategorySearchComponent } from "./category-search.component";
+import { CategoryCardComponent } from "../category-card/category-card.component";
+import { ICategory } from "../category";
+import { CategorySearchComponent } from "../category-search/category-search.component";
 
 @Component({
-  selector: "hyrule-compendium",
-  templateUrl: "./compendium.component.html",
+  selector: "hyrule-categories",
+  templateUrl: "./categories.component.html",
   standalone: true,
   imports: [CategoryCardComponent, CategorySearchComponent]
 })
-export class CompendiumComponent {
+export class CategoriesComponent {
   categories: ICategory[] = [
     {
       name: "Creatures",

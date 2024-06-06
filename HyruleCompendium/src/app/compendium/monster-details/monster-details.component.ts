@@ -1,24 +1,24 @@
 import { TitleCasePipe } from "@angular/common";
 import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
-import { IMaterial } from "./material";
-import { CompendiumClient } from "./compendium.client";
+import { CompendiumClient } from "../compendium.client";
+import { IMonster } from "../monster";
 
 @Component({
-  selector: "hyrule-material-details",
-  templateUrl: "./material-details.component.html",
+  selector: "hyrule-monster-details",
+  templateUrl: "./monster-details.component.html",
   standalone: true,
   imports: [TitleCasePipe],
 })
-export class MaterialDetailsComponent implements OnInit {
+export class MonsterDetailsComponent implements OnInit {
   selectedId = input.required<number>();
 
-  entries: WritableSignal<IMaterial[]> = signal([]);
+  entries: WritableSignal<IMonster[]> = signal([]);
   entry = computed(() => this.entries().find(c => c.id == this.selectedId()));
 
   constructor(private _client: CompendiumClient) {
   }
 
   ngOnInit(): void {
-    this._client.fetch<IMaterial>("materials").subscribe(d => this.entries.set(d));
+    this._client.fetch<IMonster>("monsters").subscribe(d => this.entries.set(d));
   }
 }

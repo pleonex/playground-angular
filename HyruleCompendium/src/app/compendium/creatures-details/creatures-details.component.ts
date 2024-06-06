@@ -1,6 +1,6 @@
 import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
-import { ICreature } from "./creature";
-import { CompendiumClient } from "./compendium.client";
+import { ICreature } from "../creature";
+import { CompendiumClient } from "../compendium.client";
 import { TitleCasePipe } from "@angular/common";
 
 @Component({

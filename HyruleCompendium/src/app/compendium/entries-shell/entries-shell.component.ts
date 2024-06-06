@@ -1,11 +1,11 @@
 import { Component, WritableSignal, signal } from "@angular/core";
-import { EntriesListPanelComponent } from "./entries-list-panel.component";
-import { CreaturesDetailsComponent } from "./creatures-details.component";
+import { EntriesListPanelComponent } from "../entries-list-panel/entries-list-panel.component";
+import { CreaturesDetailsComponent } from "../creatures-details/creatures-details.component";
 import { ActivatedRoute } from "@angular/router";
-import { EquipmentDetailsComponent } from "./equipment-details.component";
-import { MaterialDetailsComponent } from "./material-details.component";
-import { MonsterDetailsComponent } from "./monster-details.component";
-import { TreasureDetailsComponent } from "./treasure-details.component";
+import { EquipmentDetailsComponent } from "../equipment-details/equipment-details.component";
+import { MaterialDetailsComponent } from "../material-details/material-details.component";
+import { MonsterDetailsComponent } from "../monster-details/monster-details.component";
+import { TreasureDetailsComponent } from "../treasure-details/treasure-details.component";
 
 @Component({
   selector: "hyrule-entries-shell",

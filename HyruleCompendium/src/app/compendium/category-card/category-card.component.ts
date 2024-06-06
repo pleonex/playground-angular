@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { ICategory } from "./category";
+import { ICategory } from "../category";
 import { Router } from "@angular/router";
 
 @Component({

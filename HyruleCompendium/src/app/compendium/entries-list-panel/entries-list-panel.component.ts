@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, input, model } from "@angular/core";
-import { CompendiumClient } from "./compendium.client";
+import { CompendiumClient } from "../compendium.client";
 import { Subscription } from "rxjs";
 import { TitleCasePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
-import { ICompendiumEntry } from "./compendium-entry";
+import { ICompendiumEntry } from "../compendium-entry";
 
 @Component({
   selector: "hyrule-entries-list-panel",

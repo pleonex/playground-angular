@@ -1,9 +1,9 @@
 import { Routes } from "@angular/router";
-import { CompendiumComponent } from "./compendium.component";
-import { EntriesShellComponent } from "./entries-shell.component";
+import { CategoriesComponent } from "./categories/categories.component";
+import { EntriesShellComponent } from "./entries-shell/entries-shell.component";
 
 export const COMPENDIUM_ROUTES: Routes = [
-  { path: "", component: CompendiumComponent },
+  { path: "", component: CategoriesComponent },
   { path: "creatures", component: EntriesShellComponent },
   { path: "equipment", component: EntriesShellComponent },
   { path: "materials", component: EntriesShellComponent },

@@ -1,7 +1,7 @@
 import { TitleCasePipe } from "@angular/common";
 import { Component, OnInit, WritableSignal, computed, input, signal } from "@angular/core";
-import { IEquipment } from "./equipment";
-import { CompendiumClient } from "./compendium.client";
+import { IEquipment } from "../equipment";
+import { CompendiumClient } from "../compendium.client";
 
 @Component({
   selector: "hyrule-equipment-details",
